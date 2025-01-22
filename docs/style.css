@@ -4,26 +4,30 @@ body {
     margin-top: 50px;
 }
 
-h1 {
-    color: #4CAF50;
+form, button {
+    margin: 10px 0;
 }
 
-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
+input, button {
+    padding: 10px;
     font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
+    margin: 5px;
 }
 
 #output {
     margin-top: 20px;
     font-style: italic;
     color: #333;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
 }

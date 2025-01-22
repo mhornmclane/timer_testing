@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World with JavaScript</title>
+    <title>Google Sheets Interaction</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <p>Welcome to my first interactive GitHub Pages website!</p>
-    <button id="greetButton">Click Me!</button>
-    <p id="output"></p>
+    <h1>Google Sheets Demo</h1>
+    <form id="dataForm">
+        <input type="text" id="name" placeholder="Name" required>
+        <input type="number" id="age" placeholder="Age" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <button type="submit">Submit</button>
+    </form>
+    <button id="fetchButton">Fetch Data</button>
+    <div id="output"></div>
 
     <script src="script.js"></script>
 </body>
