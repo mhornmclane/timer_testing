@@ -1,0 +1,8 @@
+POST https://script.google.com/macros/s/AKfycbxEEWB65ma-NAj35JedDtaMoOze15L-VUvKSF1CngVQPdZ_QiFXIPPe5dJeCWAg10LJhA/exec
+Content-Type: application/json
+
+{
+  "name": "Mark",
+  "age": 33,
+  "email": "sssjohndoe@example.com"
+}
