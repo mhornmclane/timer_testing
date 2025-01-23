@@ -157,10 +157,9 @@
 
         // Open modal on Update Button Click
         updateBtn.addEventListener('click', () => {
-            const targetRow = selectedRow || [...tableBody.rows].find(row => !row.cells[2].innerText && !row.cells[3].innerText);
-            if (targetRow) {
-                selectedRow = targetRow;
-                modalExchangeNumber.innerText = targetRow.cells[0].innerText;
+            if (!selectedRow) selectNextUnpopulatedRow(); // Auto-select a row if none is selected
+            if (selectedRow) {
+                modalExchangeNumber.innerText = selectedRow.cells[0].innerText;
                 updateTime.value = new Date().toISOString().slice(0, 16); // Set default to current time
                 $('#updateModal').modal('show');
             }
@@ -197,11 +196,32 @@
                     }
                 }
 
-                // Scroll to keep updated row in view
-                selectedRow.scrollIntoView({ block: "center", behavior: "smooth" });
+                // Select the next unpopulated row after update
                 $('#updateModal').modal('hide');
+                selectNextUnpopulatedRow();
             }
         });
+
+
+        // Function to select the next unpopulated row
+        function selectNextUnpopulatedRow() {
+            const nextRow = [...tableBody.rows].find(row => !row.cells[2].innerText && !row.cells[3].innerText);
+            if (nextRow) {
+                if (selectedRow) selectedRow.classList.remove('selected-row');
+                selectedRow = nextRow;
+                selectedRow.classList.add('selected-row');
+                selectedRow.scrollIntoView({ block: "center", behavior: "smooth" });
+                updateBtn.textContent = "Update Selected Row";
+            }
+        }
+
+        // Initial selection on load
+        selectNextUnpopulatedRow();
+
+
+        // Confirm Update Button Click
+        
+
     </script>
 </body>
 </html>
