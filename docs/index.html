@@ -94,6 +94,12 @@
         const confirmUpdate = document.getElementById('confirmUpdate');
         let selectedRow = null;
 
+        // Function to format datetime as a human-readable string
+        function formatDateTime(datetime) {
+            const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true };
+            return new Date(datetime).toLocaleString('en-US', options);
+        }
+
         // Prepopulate first 10 rows with static content
         const prepopulatedData = [
             { out: "2025-01-01T08:00", in: "2025-01-01T08:30", miles: 0.5 },
@@ -115,8 +121,8 @@
             row.innerHTML = `
                 <td>${i}</td>
                 <td>Exchange ${i}</td>
-                <td>${data.out}</td>
-                <td>${data.in}</td>
+                <td>${data.out ? formatDateTime(data.out) : ""}</td>
+                <td>${data.in ? formatDateTime(data.in) : ""}</td>
                 <td></td>
                 <td>${data.miles}</td>
                 <td></td>
@@ -143,6 +149,12 @@
             tableBody.appendChild(row);
         }
 
+        // Scroll to middle row on initial load
+        const middleRow = Math.floor(prepopulatedData.length / 2);
+        if (tableBody.rows[middleRow]) {
+            tableBody.rows[middleRow].scrollIntoView({ block: "center", behavior: "smooth" });
+        }
+
         // Open modal on Update Button Click
         updateBtn.addEventListener('click', () => {
             const targetRow = selectedRow || [...tableBody.rows].find(row => !row.cells[2].innerText && !row.cells[3].innerText);
@@ -161,11 +173,11 @@
                 const time = updateTime.value;
 
                 if (updateType === "inAndOut" || updateType === "runnerOut") {
-                    selectedRow.cells[2].innerText = time;
+                    selectedRow.cells[2].innerText = formatDateTime(time);
                 }
 
                 if (updateType === "inAndOut" || updateType === "runnerIn") {
-                    selectedRow.cells[3].innerText = time;
+                    selectedRow.cells[3].innerText = formatDateTime(time);
                 }
 
                 const previousRow = selectedRow.previousElementSibling;
