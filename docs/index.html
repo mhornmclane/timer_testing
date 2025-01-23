@@ -12,7 +12,7 @@
             overflow-y: auto;
         }
         .selected-row {
-            background-color: #f2f2f2;
+            background-color: #d1ecf1;
         }
     </style>
 </head>
@@ -25,8 +25,8 @@
                     <tr>
                         <th>Exchange #</th>
                         <th>Exchange Name</th>
-                        <th>Runner Out</th>
-                        <th>Runner In</th>
+                        <th>Runner Out (Datetime)</th>
+                        <th>Runner In (Datetime)</th>
                         <th>Elapsed Time</th>
                         <th>Miles</th>
                         <th>Est Pace</th>
@@ -57,11 +57,11 @@
             row.innerHTML = `
                 <td>${i}</td>
                 <td>Exchange ${i}</td>
-                <td>Runner ${i * 2 - 1}</td>
-                <td>Runner ${i * 2}</td>
-                <td>${(i * 5) % 60} min</td>
+                <td contenteditable="true" data-placeholder="Enter datetime"></td>
+                <td contenteditable="true" data-placeholder="Enter datetime"></td>
+                <td></td>
                 <td>${(i * 0.5).toFixed(1)} mi</td>
-                <td>${(10 + (i % 5)).toFixed(1)} min/mi</td>
+                <td></td>
             `;
 
             // Add click event to select a row
@@ -74,6 +74,35 @@
                 row.classList.add('selected-row');
                 selectedRow = row;
                 updateBtn.disabled = false; // Enable the update button
+            });
+
+            // Add event listener for input changes
+            row.addEventListener('input', () => {
+                const runnerOutCell = row.cells[2];
+                const runnerInCell = row.cells[3];
+                const elapsedTimeCell = row.cells[4];
+                const paceCell = row.cells[6];
+                const miles = parseFloat(row.cells[5].innerText);
+
+                const runnerOut = new Date(runnerOutCell.innerText);
+                const runnerIn = new Date(runnerInCell.innerText);
+
+                if (!isNaN(runnerOut) && !isNaN(runnerIn) && runnerIn > runnerOut) {
+                    // Calculate elapsed time in minutes
+                    const elapsedTime = (runnerIn - runnerOut) / (1000 * 60);
+                    elapsedTimeCell.innerText = `${elapsedTime.toFixed(1)} min`;
+
+                    // Calculate pace (min per mile)
+                    if (miles > 0) {
+                        const pace = elapsedTime / miles;
+                        paceCell.innerText = `${pace.toFixed(2)} min/mi`;
+                    } else {
+                        paceCell.innerText = '';
+                    }
+                } else {
+                    elapsedTimeCell.innerText = '';
+                    paceCell.innerText = '';
+                }
             });
 
             tableBody.appendChild(row);
