@@ -42,6 +42,39 @@
         </div>
     </div>
 
+    <!-- Update Modal -->
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateModalLabel">Update Row</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Updating Exchange: <span id="modalExchangeNumber"></span></p>
+                    <div class="form-group">
+                        <label for="updateType">Update Type</label>
+                        <select id="updateType" class="form-control">
+                            <option value="inAndOut" selected>Runner In and Out</option>
+                            <option value="runnerIn">Runner In Only</option>
+                            <option value="runnerOut">Runner Out Only</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateTime">Current Time</label>
+                        <input type="datetime-local" id="updateTime" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="confirmUpdate" class="btn btn-primary">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
@@ -49,6 +82,10 @@
     <script>
         const tableBody = document.getElementById('table-body');
         const updateBtn = document.getElementById('update-btn');
+        const modalExchangeNumber = document.getElementById('modalExchangeNumber');
+        const updateType = document.getElementById('updateType');
+        const updateTime = document.getElementById('updateTime');
+        const confirmUpdate = document.getElementById('confirmUpdate');
         let selectedRow = null;
 
         // Generate 70 rows dynamically
@@ -76,44 +113,38 @@
                 updateBtn.disabled = false; // Enable the update button
             });
 
-            // Add event listener for input changes
-            row.addEventListener('input', () => {
-                const runnerOutCell = row.cells[2];
-                const runnerInCell = row.cells[3];
-                const elapsedTimeCell = row.cells[4];
-                const paceCell = row.cells[6];
-                const miles = parseFloat(row.cells[5].innerText);
-
-                const runnerOut = new Date(runnerOutCell.innerText);
-                const runnerIn = new Date(runnerInCell.innerText);
-
-                if (!isNaN(runnerOut) && !isNaN(runnerIn) && runnerIn > runnerOut) {
-                    // Calculate elapsed time in minutes
-                    const elapsedTime = (runnerIn - runnerOut) / (1000 * 60);
-                    elapsedTimeCell.innerText = `${elapsedTime.toFixed(1)} min`;
-
-                    // Calculate pace (min per mile)
-                    if (miles > 0) {
-                        const pace = elapsedTime / miles;
-                        paceCell.innerText = `${pace.toFixed(2)} min/mi`;
-                    } else {
-                        paceCell.innerText = '';
-                    }
-                } else {
-                    elapsedTimeCell.innerText = '';
-                    paceCell.innerText = '';
-                }
-            });
-
             tableBody.appendChild(row);
         }
 
-        // Handle Update Button Click
+        // Open modal on Update Button Click
         updateBtn.addEventListener('click', () => {
             if (selectedRow) {
                 const exchangeNumber = selectedRow.cells[0].innerText;
-                alert(`Update information for Exchange #${exchangeNumber}`);
-                // Add your update logic here
+                modalExchangeNumber.innerText = exchangeNumber;
+                updateTime.value = new Date().toISOString().slice(0, 16); // Set default to current time
+                $('#updateModal').modal('show');
+            }
+        });
+
+        // Confirm Update Button Click
+        confirmUpdate.addEventListener('click', () => {
+            if (selectedRow) {
+                const type = updateType.value;
+                const time = updateTime.value;
+
+                if (type === "inAndOut" || type === "runnerOut") {
+                    selectedRow.cells[2].innerText = time;
+                }
+
+                if (type === "inAndOut" || type === "runnerIn") {
+                    selectedRow.cells[3].innerText = time;
+                }
+
+                $('#updateModal').modal('hide');
+
+                // Trigger input event to recalculate elapsed time and pace
+                const event = new Event('input', { bubbles: true });
+                selectedRow.dispatchEvent(event);
             }
         });
     </script>
