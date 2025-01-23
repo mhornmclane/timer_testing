@@ -20,7 +20,7 @@
     <div class="container mt-5">
         <h2 class="text-center">Relay Event Tracker</h2>
         <div class="table-container border">
-            <table class="table table-striped table-hover text-center">
+            <table class="table table-hover text-center">
                 <thead class="thead-dark">
                     <tr>
                         <th>Exchange #</th>
@@ -55,12 +55,18 @@
                 <div class="modal-body">
                     <p>Updating Exchange: <span id="modalExchangeNumber"></span></p>
                     <div class="form-group">
-                        <label for="updateType">Update Type</label>
-                        <select id="updateType" class="form-control">
-                            <option value="inAndOut" selected>Runner In and Out</option>
-                            <option value="runnerIn">Runner In Only</option>
-                            <option value="runnerOut">Runner Out Only</option>
-                        </select>
+                        <label>Update Type</label>
+                        <div class="btn-group btn-group-toggle d-flex" data-toggle="buttons">
+                            <label class="btn btn-outline-primary active flex-fill">
+                                <input type="radio" name="updateType" id="updateInAndOut" value="inAndOut" autocomplete="off" checked> Runner In and Out
+                            </label>
+                            <label class="btn btn-outline-primary flex-fill">
+                                <input type="radio" name="updateType" id="updateRunnerIn" value="runnerIn" autocomplete="off"> Runner In Only
+                            </label>
+                            <label class="btn btn-outline-primary flex-fill">
+                                <input type="radio" name="updateType" id="updateRunnerOut" value="runnerOut" autocomplete="off"> Runner Out Only
+                            </label>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="updateTime">Current Time</label>
@@ -83,7 +89,6 @@
         const tableBody = document.getElementById('table-body');
         const updateBtn = document.getElementById('update-btn');
         const modalExchangeNumber = document.getElementById('modalExchangeNumber');
-        const updateType = document.getElementById('updateType');
         const updateTime = document.getElementById('updateTime');
         const confirmUpdate = document.getElementById('confirmUpdate');
         let selectedRow = null;
@@ -94,8 +99,8 @@
             row.innerHTML = `
                 <td>${i}</td>
                 <td>Exchange ${i}</td>
-                <td contenteditable="true" data-placeholder="Enter datetime"></td>
-                <td contenteditable="true" data-placeholder="Enter datetime"></td>
+                <td></td>
+                <td></td>
                 <td></td>
                 <td>${(i * 0.5).toFixed(1)} mi</td>
                 <td></td>
@@ -129,22 +134,35 @@
         // Confirm Update Button Click
         confirmUpdate.addEventListener('click', () => {
             if (selectedRow) {
-                const type = updateType.value;
+                const updateType = document.querySelector('input[name="updateType"]:checked').value;
                 const time = updateTime.value;
 
-                if (type === "inAndOut" || type === "runnerOut") {
+                if (updateType === "inAndOut" || updateType === "runnerOut") {
                     selectedRow.cells[2].innerText = time;
                 }
 
-                if (type === "inAndOut" || type === "runnerIn") {
+                if (updateType === "inAndOut" || updateType === "runnerIn") {
                     selectedRow.cells[3].innerText = time;
                 }
 
-                $('#updateModal').modal('hide');
+                const previousRow = selectedRow.previousElementSibling;
+                if (previousRow) {
+                    const previousOutTime = new Date(previousRow.cells[3].innerText);
+                    const currentInTime = new Date(selectedRow.cells[3].innerText);
 
-                // Trigger input event to recalculate elapsed time and pace
-                const event = new Event('input', { bubbles: true });
-                selectedRow.dispatchEvent(event);
+                    if (!isNaN(previousOutTime) && !isNaN(currentInTime) && currentInTime > previousOutTime) {
+                        const elapsedMinutes = (currentInTime - previousOutTime) / (1000 * 60);
+                        selectedRow.cells[4].innerText = `${elapsedMinutes.toFixed(1)} min`;
+
+                        const miles = parseFloat(selectedRow.cells[5].innerText);
+                        if (miles > 0) {
+                            const pace = elapsedMinutes / miles;
+                            selectedRow.cells[6].innerText = `${pace.toFixed(2)} min/mi`;
+                        }
+                    }
+                }
+
+                $('#updateModal').modal('hide');
             }
         });
     </script>
