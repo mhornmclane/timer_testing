@@ -24,8 +24,8 @@
             <table class="table table-hover text-center">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Exchange #</th>
-                        <th>Exchange Name</th>
+                        <th>Leg #</th>
+                        <th>Location</th>
                         <th>Runner Out (Datetime)</th>
                         <th>Runner In (Datetime)</th>
                         <th>Elapsed Time</th>
@@ -102,37 +102,113 @@
 
         // Prepopulate first 10 rows with static content
         const prepopulatedData = [
-            { out: "2025-01-01T08:00", in: "2025-01-01T08:30", miles: 0.5 },
-            { out: "2025-01-01T08:40", in: "2025-01-01T09:10", miles: 0.5 },
-            { out: "2025-01-01T09:20", in: "2025-01-01T09:50", miles: 0.5 },
-            { out: "2025-01-01T10:00", in: "2025-01-01T10:30", miles: 0.5 },
-            { out: "2025-01-01T10:40", in: "2025-01-01T11:10", miles: 0.5 },
-            { out: "2025-01-01T11:20", in: "2025-01-01T11:50", miles: 0.5 },
-            { out: "2025-01-01T12:00", in: "2025-01-01T12:30", miles: 0.5 },
-            { out: "2025-01-01T12:40", in: "2025-01-01T13:10", miles: 0.5 },
-            { out: "2025-01-01T13:20", in: "2025-01-01T13:50", miles: 0.5 },
-            { out: "2025-01-01T14:00", in: "2025-01-01T14:30", miles: 0.5 },
+            // { out: "2025-01-01T08:00", in: "2025-01-01T08:30", miles: 0.5 },
+            // { out: "2025-01-01T08:40", in: "2025-01-01T09:10", miles: 0.5 },
+            // { out: "2025-01-01T09:20", in: "2025-01-01T09:50", miles: 0.5 },
+            // { out: "2025-01-01T10:00", in: "2025-01-01T10:30", miles: 0.5 },
+            // { out: "2025-01-01T10:40", in: "2025-01-01T11:10", miles: 0.5 },
+            // { out: "2025-01-01T11:20", in: "2025-01-01T11:50", miles: 0.5 },
+            // { out: "2025-01-01T12:00", in: "2025-01-01T12:30", miles: 0.5 },
+            // { out: "2025-01-01T12:40", in: "2025-01-01T13:10", miles: 0.5 },
+            // { out: "2025-01-01T13:20", in: "2025-01-01T13:50", miles: 0.5 },
+            // { out: "2025-01-01T14:00", in: "2025-01-01T14:30", miles: 0.5 },
         ];
 
-        for (let i = 1; i <= 70; i++) {
-            const row = document.createElement('tr');
-            const data = prepopulatedData[i - 1] || { out: "", in: "", miles: (i * 0.5).toFixed(1) };
+        const exchange_data = [
+            { Challenge: "No", Leg: 1, Distance: 2.51, Start: "C.C. Fairgrounds", Finish: "George Gaspa Sports Complex, 900 Sandwich Rd", Release: "2025-01-25T01:00:00" },
+            { Challenge: "No", Leg: 2, Distance: 2.56, Start: "George Gaspa Sports Complex", Finish: "Recovering Champions (279 Brick Kiln Rd)", Release: "2025-01-25T01:26:00" },
+            { Challenge: "No", Leg: 3, Distance: 2.69, Start: "Recovering Champions", Finish: "Chapoquoit Grill (410 Rte 28A)", Release: "2025-01-25T01:52:00" },
+            { Challenge: "No", Leg: 4, Distance: 2.49, Start: "Chapoquoit Grill", Finish: "Shining Sea Bikeway behind Seafood Sam's", Release: "2025-01-25T02:20:00" },
+            { Challenge: "No", Leg: 5, Distance: 3.17, Start: "Seafood Sam's", Finish: "Falmouth beach parking lot, 56 Surf Drive", Release: "2025-01-25T02:46:00" },
+            { Challenge: "No", Leg: 6, Distance: 2.79, Start: "Surf Drive", Finish: "Falmouth beach parking lot, 242 Grand Avenue", Release: "2025-01-25T03:19:00" },
+            { Challenge: "No", Leg: 7, Distance: 2.61, Start: "Shipwrecked", Finish: "Falmouth beach parking lot, 663 Menauhant Road", Release: "2025-01-25T03:48:00" },
+            { Challenge: "No", Leg: 8, Distance: 2.01, Start: "Menauhant", Finish: "Kenyon's Market", Release: "2025-01-25T04:15:00" },
+            { Challenge: "No", Leg: 9, Distance: 2.51, Start: "Kenyon's Market", Finish: "Martin Rd", Release: "2025-01-25T04:36:00" },
+            { Challenge: "No", Leg: 10, Distance: 2, Start: "Martin Rd", Finish: "Jones Residence", Release: "2025-01-25T05:02:00" },
+            { Challenge: "No", Leg: 11, Distance: 2.96, Start: "Jones Residence", Finish: "C.C. Children's Museum", Release: "2025-01-25T05:21:00" },
+            { Challenge: "No", Leg: 12, Distance: 2.25, Start: "Children's Museum", Finish: "Smitty's Ice Cream", Release: "2025-01-25T05:52:00" },
+            { Challenge: "No", Leg: 13, Distance: 3.78, Start: "Smitty's", Finish: "Loop Beach, Cotuit", Release: "2025-01-25T06:15:00" },
+            { Challenge: "No", Leg: 14, Distance: 3.07, Start: "Loop Beach", Finish: "Windmill Square", Release: "2025-01-25T06:54:00" },
+            { Challenge: "No", Leg: 15, Distance: 3.3, Start: "Windmill Square", Finish: "Ellen A. McBarron Field", Release: "2025-01-25T07:26:00" },
+            { Challenge: "No", Leg: 16, Distance: 3.31, Start: "McBarron Field", Finish: "Cooperative Bank of Cape Cod", Release: "2025-01-25T08:00:00" },
+            { Challenge: "No", Leg: 17, Distance: 3.64, Start: "Cooperative Bank", Finish: "St Mary's Episcopal Church", Release: "2025-01-25T08:34:00" },
+            { Challenge: "No", Leg: 18, Distance: 2.61, Start: "St Mary's", Finish: "Cummaquid Golf Club", Release: "2025-01-25T09:12:00" },
+            { Challenge: "No", Leg: 19, Distance: 3.05, Start: "Cummaquid GC", Finish: "Royal II Restaurant", Release: "2025-01-25T09:39:00" },
+            { Challenge: "No", Leg: 20, Distance: 3.14, Start: "Royal II", Finish: "Dennis Senior Center", Release: "2025-01-25T10:10:00" },
+            { Challenge: "No", Leg: 21, Distance: 3.4, Start: "Dennis Senior Center", Finish: "Brewster Transfer Station", Release: "2025-01-25T10:42:00" },
+            { Challenge: "No", Leg: 22, Distance: 2.56, Start: "Brewster Transfer Station", Finish: "Brewster Town Hall & Offices", Release: "2025-01-25T11:17:00" },
+            { Challenge: "No", Leg: 23, Distance: 2.86, Start: "Brewster Town Hall", Finish: "Crosby Beach parking lot", Release: "2025-01-25T11:43:00" },
+            { Challenge: "No", Leg: 24, Distance: 3.1, Start: "Crosby Beach", Finish: "parking lot across from Orleans Police Dept", Release: "2025-01-25T12:12:00" },
+            { Challenge: "No", Leg: 25, Distance: 3.75, Start: "Orleans PD", Finish: "Eastham Superette", Release: "2025-01-25T12:44:00" },
+            { Challenge: "No", Leg: 26, Distance: 2.87, Start: "Eastham Superette", Finish: "Cape Cod Rail Trail at Nauset Rd and Railroad Ave", Release: "2025-01-25T13:23:00" },
+            { Challenge: "No", Leg: 27, Distance: 3.62, Start: "CC Rail Trail at Nauset Rd", Finish: "Cape Cod Rail Trail behind Wellfleet Post Office", Release: "2025-01-25T13:53:00" },
+            { Challenge: "No", Leg: 28, Distance: 2.46, Start: "CC Rail Trail behind Wellfleet PO", Finish: "The Beachcomber", Release: "2025-01-25T14:30:00" },
+            { Challenge: "No", Leg: 29, Distance: 3.25, Start: "Beachcomber", Finish: "Moby Dick Restaurant", Release: "2025-01-25T14:55:00" },
+            { Challenge: "No", Leg: 30, Distance: 3.54, Start: "Moby Dick", Finish: "Collins Rd at S. Pamet Rd", Release: "2025-01-25T15:29:00" },
+            { Challenge: "No", Leg: 31, Distance: 2.23, Start: "Collins & S. Pamet", Finish: "Whitmanville Road", Release: "2025-01-25T16:06:00" },
+            { Challenge: "No", Leg: 32, Distance: 2.01, Start: "Whitmanville Road", Finish: "South Highland Rd at South Hollow Rd", Release: "2025-01-25T16:29:00" },
+            { Challenge: "No", Leg: 33, Distance: 2.09, Start: "S. Highland Rd & S. Hollow Rd", Finish: "Terra Luna Restaurant", Release: "2025-01-25T16:43:00" },
+            { Challenge: "No", Leg: 34, Distance: 3.11, Start: "Terra Luna", Finish: "Kalmar Village", Release: "2025-01-25T17:05:00" },
+            { Challenge: "Yes", Leg: 35, Distance: 2.7, Start: "Kalmar Village", Finish: "Pilgrim Monument", Release: "2025-01-25T17:37:00" },
+            { Challenge: "No", Leg: 36, Distance: 2.63, Start: "Pilgrim Monument", Finish: "Kalmar Village", Release: "2025-01-25T18:35:00" },
+            { Challenge: "No", Leg: 37, Distance: 3.11, Start: "Kalmar Village", Finish: "Terra Luna Restaurant", Release: "2025-01-25T19:02:00" },
+            { Challenge: "No", Leg: 38, Distance: 2.09, Start: "Terra Luna", Finish: "South Highland Rd at South Hollow Rd", Release: "2025-01-25T19:34:00" },
+            { Challenge: "No", Leg: 39, Distance: 2.02, Start: "S. Highland Rd & S. Hollow Rd", Finish: "Whitmanville Road", Release: "2025-01-25T19:56:00" },
+            { Challenge: "No", Leg: 40, Distance: 2.23, Start: "Whitmanville Road", Finish: "Collins Rd at S. Pamet Rd", Release: "2025-01-25T20:17:00" },
+            { Challenge: "No", Leg: 41, Distance: 3.56, Start: "Collins & S. Pamet", Finish: "Moby Dick Restaurant", Release: "2025-01-25T20:40:00" },
+            { Challenge: "No", Leg: 42, Distance: 3.25, Start: "Moby Dick", Finish: "The Beachcomber", Release: "2025-01-25T21:17:00" },
+            { Challenge: "No", Leg: 43, Distance: 2.47, Start: "Beachcomber", Finish: "Cape Cod Rail Trail behind Eastham Post Office", Release: "2025-01-25T21:51:00" },
+            { Challenge: "No", Leg: 44, Distance: 3.6, Start: "CC Rail Trail Eastham Post Office", Finish: "Cape Cod Rail Trail at Nauset Rd and Railroad Ave", Release: "2025-01-25T22:16:00" },
+            { Challenge: "No", Leg: 45, Distance: 2.86, Start: "CC Rail Trail at Nauset Rd", Finish: "Eastham Superette", Release: "2025-01-25T22:53:00" },
+            { Challenge: "No", Leg: 46, Distance: 3.16, Start: "Eastham Superette", Finish: "Cape Cod Rail Trail behind St Joan of Arc Church", Release: "2025-01-25T23:23:00" },
+            { Challenge: "No", Leg: 47, Distance: 2.95, Start: "St Joan of Arc", Finish: "Cape Cod Rail Trail at Nickerson State Park", Release: "2025-01-25T23:56:00" },
+            { Challenge: "No", Leg: 48, Distance: 2.66, Start: "Nickerson State Park", Finish: "Cape Cod Rail Trail on Long Pond Road", Release: "2025-01-26T00:26:00" },
+            { Challenge: "No", Leg: 49, Distance: 3.36, Start: "Long Pond Road", Finish: "Cape Cod Rail Trail on Headwaters Rd", Release: "2025-01-26T00:53:00" },
+            { Challenge: "No", Leg: 50, Distance: 2.33, Start: "Headwaters Rd", Finish: "Old Colony Rail Trail on Oak St", Release: "2025-01-26T01:28:00" },
+            { Challenge: "No", Leg: 51, Distance: 2.93, Start: "Oak St", Finish: "Old Colony Rail Trail on Meetinghouse Rd", Release: "2025-01-26T01:52:00" },
+            { Challenge: "No", Leg: 52, Distance: 3.27, Start: "Meetinghouse Rd", Finish: "Old Colony Rail Trail on Stepping Stones Rd", Release: "2025-01-26T02:22:00" },
+            { Challenge: "Yes", Leg: 53, Distance: 2.48, Start: "Stepping Stones Rd", Finish: "USCG Chatham Light House", Release: "2025-01-26T02:56:00" },
+            { Challenge: "No", Leg: 54, Distance: 3.08, Start: "Chatham Light House", Finish: "Ocean State Job Lot", Release: "2025-01-26T03:51:00" },
+            { Challenge: "No", Leg: 55, Distance: 3.72, Start: "Ocean State", Finish: "Saquatucket Marina", Release: "2025-01-26T04:23:00" },
+            { Challenge: "No", Leg: 56, Distance: 3.36, Start: "Saquatucket Marina", Finish: "Sea View Park", Release: "2025-01-26T05:02:00" },
+            { Challenge: "No", Leg: 57, Distance: 2.87, Start: "Sea View Park", Finish: "Good Friends Café", Release: "2025-01-26T05:37:00" },
+            { Challenge: "No", Leg: 58, Distance: 3.68, Start: "Good Friends", Finish: "West Yarmouth Post Office", Release: "2025-01-26T06:07:00" },
+            { Challenge: "No", Leg: 59, Distance: 3.35, Start: "W. Yarmouth Post Office", Finish: "Smith Family Popcorn", Release: "2025-01-26T06:45:00" },
+            { Challenge: "No", Leg: 60, Distance: 3.39, Start: "Smith Family Popcorn", Finish: "Barnstable Police Department", Release: "2025-01-26T07:20:00" },
+            { Challenge: "No", Leg: 61, Distance: 2.93, Start: "Barnstable PD", Finish: "Barnstable Land Trust", Release: "2025-01-26T07:55:00" },
+            { Challenge: "No", Leg: 62, Distance: 3.12, Start: "Barnstable Land Trust", Finish: "Amari's Restaurant", Release: "2025-01-26T08:25:00" },
+            { Challenge: "No", Leg: 63, Distance: 3.23, Start: "Amari's", Finish: "Scenic Roots", Release: "2025-01-26T08:57:00" },
+            { Challenge: "No", Leg: 64, Distance: 3.87, Start: "Scenic Roots", Finish: "Canal Service Road", Release: "2025-01-26T09:30:00" },
+            { Challenge: "No", Leg: 65, Distance: 2.45, Start: "Canal Service Road", Finish: "American Legion", Release: "2025-01-26T10:10:00" },
+            { Challenge: "No", Leg: 66, Distance: 2.83, Start: "American Legion", Finish: "Sandwich DPW & Dump", Release: "2025-01-26T10:35:00" },
+            { Challenge: "No", Leg: 67, Distance: 2.29, Start: "Sandwich DPW", Finish: "Fitzie's Barbershop", Release: "2025-01-26T11:04:00" },
+            { Challenge: "No", Leg: 68, Distance: 2.05, Start: "Fitzie's", Finish: "Forestdale Church", Release: "2025-01-26T11:28:00" },
+            { Challenge: "No", Leg: 69, Distance: 2.53, Start: "Forestdale Church", Finish: "JBCC Sandwich Gate", Release: "2025-01-26T11:49:00" },
+            { Challenge: "No", Leg: 70, Distance: 3.39, Start: "JBCC Sandwich Gate", Finish: "JBCC Falmouth Gate", Release: "2025-01-26T12:15:00" },
+            { Challenge: "No", Leg: 71, Distance: 2.47, Start: "JBCC Falmouth Gate", Finish: "Cape Cod Fairgrounds", Release: "2025-01-26T12:50:00" }
+            ];
 
+  
+
+        for (let i = 1; i <= 71; i++) {
+            const row = document.createElement('tr');
+            // const data = prepopulatedData[i - 1] || { out: "", in: "", miles: (i * 0.5).toFixed(1) };
+            
             row.innerHTML = `
-                <td>${i}</td>
-                <td>Exchange ${i}</td>
-                <td>${data.out ? formatDateTime(data.out) : ""}</td>
-                <td>${data.in ? formatDateTime(data.in) : ""}</td>
+                <td>${exchange_data[i-1].Leg}</td>
+                <td>${exchange_data[i-1].Finish}</td>
                 <td></td>
-                <td>${data.miles}</td>
+                <td></td>
+                <td></td>
+                <td>${exchange_data[i-1].Distance}</td>
                 <td></td>
             `;
 
-            if (data.out && data.in) {
-                const elapsedMinutes = (new Date(data.in) - new Date(data.out)) / (1000 * 60);
-                row.cells[4].innerText = `${elapsedMinutes.toFixed(1)} min`;
-                row.cells[6].innerText = `${(elapsedMinutes / data.miles).toFixed(2)} min/mi`;
-            }
+            // if (data.out && data.in) {
+            //     const elapsedMinutes = (new Date(data.in) - new Date(data.out)) / (1000 * 60);
+            //     row.cells[4].innerText = `${elapsedMinutes.toFixed(1)} min`;
+            //     row.cells[6].innerText = `${(elapsedMinutes / data.miles).toFixed(2)} min/mi`;
+            // }
 
             // Add click event to select a row
             row.addEventListener('click', () => {

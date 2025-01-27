@@ -1,0 +1,72 @@
+Challenge,Leg,Distance,Start,Finish,Release 
+No,1,2.51,C.C. Fairgrounds,"George Gaspa Sports Complex, 900 Sandwich Rd",1:00 AM
+No,2,2.56,George Gaspa Sports Complex,Recovering Champions (279 Brick Kiln Rd),1:26 AM
+No,3,2.69,Recovering Champions,Chapoquoit Grill (410 Rte 28A),1:52 AM
+No,4,2.49,Chapoquoit Grill,Shining Sea Bikeway behind Seafood Sam's,2:20 AM
+No,5,3.17,Seafood Sam's,"Falmouth beach parking lot, 56 Surf Drive",2:46 AM
+No,6,2.79,Surf Drive,"Falmouth beach parking lot, 242 Grand Avenue",3:19 AM
+No,7,2.61,Shipwrecked,"Falmouth beach parking lot, 663 Menauhant Road",3:48 AM
+No,8,2.01,Menauhant,Kenyon's Market,4:15 AM
+No,9,2.51,Kenyon's Market,Martin Rd,4:36 AM
+No,10,2,Martin Rd,Jones Residence,5:02 AM
+No,11,2.96,Jones Residence,C.C. Children's Museum,5:21 AM
+No,12,2.25,Children's Museum,Smitty's Ice Cream,5:52 AM
+No,13,3.78,Smitty's,"Loop Beach, Cotuit",6:15 AM
+No,14,3.07,Loop Beach,Windmill Square,6:54 AM
+No,15,3.3,Windmill Square,Ellen A. McBarron Field,7:26 AM
+No,16,3.31,McBarron Field,Cooperative Bank of Cape Cod,8:00 AM
+No,17,3.64,Cooperative Bank,St Mary's Episcopal Church,8:34 AM
+No,18,2.61,St Mary's,Cummaquid Golf Club,9:12 AM
+No,19,3.05,Cummaquid GC,Royal II Restaurant,9:39 AM
+No,20,3.14,Royal II,Dennis Senior Center,10:10 AM
+No,21,3.4,Dennis Senior Center,Brewster Transfer Station,10:42 AM
+No,22,2.56,Brewster Transfer Station,Brewster Town Hall & Offices,11:17 AM
+No,23,2.86,Brewster Town Hall,Crosby Beach parking lot,11:43 AM
+No,24,3.1,Crosby Beach,parking lot across from Orleans Police Dept,12:12 PM
+No,25,3.75,Orleans PD,Eastham Superette,12:44 PM
+No,26,2.87,Eastham Superette,Cape Cod Rail Trail at Nauset Rd and Railroad Ave,1:23 PM
+No,27,3.62,CC Rail Trail at Nauset Rd,Cape Cod Rail Trail behind Wellfleet Post Office,1:53 PM
+No,28,2.46,CC Rail Trail behind Wellfleet PO,The Beachcomber,2:30 PM
+No,29,3.25,Beachcomber,Moby Dick Restaurant,2:55 PM
+No,30,3.54,Moby Dick,Collins Rd at S. Pamet Rd,3:29 PM
+No,31,2.23,Collins & S. Pamet,Whitmanville Road,4:06 PM
+No,32,2.01,Whitmanville Road,South Highland Rd at South Hollow Rd,4:29 PM
+No,33,2.09,S. Highland Rd & S. Hollow Rd,Terra Luna Restaurant,4:43 PM
+No,34,3.11,Terra Luna,Kalmar Village,5:05 PM
+Yes,35,2.7,Kalmar Village,Pilgrim Monument,5:37 PM
+No,36,2.63,Pilgrim Monument,Kalmar Village,6:35 PM
+No,37,3.11,Kalmar Village,Terra Luna Restaurant,7:02 PM
+No,38,2.09,Terra Luna,South Highland Rd at South Hollow Rd,7:34 PM
+No,39,2.02,S. Highland Rd & S. Hollow Rd,Whitmanville Road,7:56 PM
+No,40,2.23,Whitmanville Road,Collins Rd at S. Pamet Rd,8:17 PM
+No,41,3.56,Collins & S. Pamet,Moby Dick Restaurant,8:40 PM
+No,42,3.25,Moby Dick,The Beachcomber,9:17 PM
+No,43,2.47,Beachcomber,Cape Cod Rail Trail behind Eastham Post Office,9:51 PM
+No,44,3.6,CC Rail Trail Eastham Post Office,Cape Cod Rail Trail at Nauset Rd and Railroad Ave,10:16 PM
+No,45,2.86,CC Rail Trail at Nauset Rd,Eastham Superette,10:53 PM
+No,46,3.16,Eastham Superette,Cape Cod Rail Trail behind St Joan of Arc Church,11:23 PM
+No,47,2.95,St Joan of Arc,Cape Cod Rail Trail at Nickerson State Park,11:56 PM
+No,48,2.66,Nickerson State Park,Cape Cod Rail Trail on Long Pond Road,12:26 AM
+No,49,3.36,Long Pond Road,Cape Cod Rail Trail on Headwaters Rd,12:53 AM
+No,50,2.33,Headwaters Rd,Old Colony Rail Trail on Oak St,1:28 AM
+No,51,2.93,Oak St,Old Colony Rail Trail on Meetinghouse Rd,1:52 AM
+No,52,3.27,Meetinghouse Rd,Old Colony Rail Trail on Stepping Stones Rd,2:22 AM
+Yes,53,2.48,Stepping Stones Rd,USCG Chatham Light House,2:56 AM
+No,54,3.08,Chatham Light House,Ocean State Job Lot,3:51 AM
+No,55,3.72,Ocean State,Saquatucket Marina,4:23 AM
+No,56,3.36,Saquatucket Marina,Sea View Park,5:02 AM
+No,57,2.87,Sea View Park,Good Friends Café,5:37 AM
+No,58,3.68,Good Friends,West Yarmouth Post Office,6:07 AM
+No,59,3.35,W. Yarmouth Post Office,Smith Family Popcorn,6:45 AM
+No,60,3.39,Smith Family Popcorn,Barnstable Police Department,7:20 AM
+No,61,2.93,Barnstable PD,Barnstable Land Trust,7:55 AM
+No,62,3.12,Barnstable Land Trust,Amari's Resaturant,8:25 AM
+No,63,3.23,Amari's,Scenic Roots,8:57 AM
+No,64,3.87,Scenic Routes,Canal Service Road,9:30 AM
+No,65,2.45,Canal Service Road,American Legion,10:10 AM
+No,66,2.83,American Legion,Sandwich DPW & Dump,10:35 AM
+No,67,2.29,Sandwich DPW,Fitzie's Barbershop,11:04 AM
+No,68,2.05,Fitzie's,Forestdale Church,11:28 AM
+No,69,2.53,Forestdale Church,JBCC Sandwich Gate,11:49 AM
+No,70,3.39,JBCC Sandwich Gate,JBCC Falmouth Gate,12:15 PM
+No,71,2.47,JBCC Falmouth Gate,Cape Cod Fairgrounds,12:50 PM
